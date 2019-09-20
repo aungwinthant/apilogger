@@ -1,0 +1,18 @@
+{
+    "autoload": {
+        "psr-4": {
+            "AWT\\": "src/"
+        }
+    },
+    "name": "awt/apilogger",
+    "description": "Small laravel package for viewing api logs which can be used in debugging.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "aung win thant",
+            "email": "agwinthant@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev"
+}
