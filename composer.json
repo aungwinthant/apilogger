@@ -14,5 +14,12 @@
             "email": "agwinthant@gmail.com"
         }
     ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "AWT\\Providers\\ApiLogServiceProvider"
+            ]
+        }
+    },
     "minimum-stability": "dev"
 }

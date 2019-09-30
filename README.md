@@ -14,7 +14,9 @@ composer require awt/apilogger @dev
 ```
 ## Usage
 
-1. Register it in your app.php file
+1.  Laravel 5.5 and higher uses Package Auto-Discovery, so doesn't require you to manually add
+the ServiceProvider. If you use a lower version of Laravel you must register it in your 
+_app.php_ file:
 
 ```bash
 AWT\Providers\ApiLogServiceProvider::class
