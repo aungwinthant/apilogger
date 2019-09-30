@@ -44,19 +44,22 @@ abstract class AbstractLogger{
     public function logData($request,$response){
         $currentRouteAction = Route::currentRouteAction();
 
-        if($currentRouteAction){
-            list($controller,$action) = explode('@',$currentRouteAction);
+        /*
+         * Some routes will not contain the `@` symbole (e.g. closures, or routes using a single action controller).
+         */
+        if ($currentRouteAction) {
+            if (strpos('@', $currentRouteAction) !== false) {
+                list($controller, $action) = explode('@', $currentRouteAction);
+            } else {
+                // If we get a string, just use that.
+                if (is_string($currentRouteAction)) {
+                    list ($controller, $action) = ["", $currentRouteAction];
+                } else {
+                    // Otherwise force it to be some type of string using `json_encode`.
+                    list ($controller, $action) = ["", (string)json_encode($currentRouteAction)];
+                }
+            }
         }
-        else{
-            list($controller,$action) = ["",""];
-        }
-        $endTime = microtime(true);
-        
-        $implode_models = $this->models;
-
-        array_walk($implode_models, function(&$value, $key) {
-            $value = "{$key} ({$value})";
-        });
 
         $models = implode(', ',$implode_models);
         $this->logs['created_at'] = Carbon::now();
