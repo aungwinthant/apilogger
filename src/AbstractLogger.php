@@ -47,7 +47,7 @@ abstract class AbstractLogger{
          * Some routes will not contain the `@` symbole (e.g. closures, or routes using a single action controller).
          */
         if ($currentRouteAction) {
-            if (strpos('@', $currentRouteAction) !== false) {
+            if (strpos($currentRouteAction, '@') !== false) {
                 list($controller, $action) = explode('@', $currentRouteAction);
             } else {
                 // If we get a string, just use that.
