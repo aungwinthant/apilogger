@@ -26,7 +26,6 @@ abstract class AbstractLogger{
     public function boot(){
         Event::listen('eloquent.*', function ($event, $models) {
             if (Str::contains($event, 'eloquent.retrieved')) {
-                Log::debug('fired');
                 foreach (array_filter($models) as $model) {
                     $class = get_class($model);
                     $this->models[$class] = ($this->models[$class] ?? 0) + 1;
