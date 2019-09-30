@@ -26,7 +26,6 @@ abstract class AbstractLogger{
     public function boot(){
         Event::listen('eloquent.*', function ($event, $models) {
             if (Str::contains($event, 'eloquent.retrieved')) {
-                Log::debug('fired');
                 foreach (array_filter($models) as $model) {
                     $class = get_class($model);
                     $this->models[$class] = ($this->models[$class] ?? 0) + 1;
@@ -48,7 +47,7 @@ abstract class AbstractLogger{
          * Some routes will not contain the `@` symbole (e.g. closures, or routes using a single action controller).
          */
         if ($currentRouteAction) {
-            if (strpos('@', $currentRouteAction) !== false) {
+            if (strpos($currentRouteAction, '@') !== false) {
                 list($controller, $action) = explode('@', $currentRouteAction);
             } else {
                 // If we get a string, just use that.
