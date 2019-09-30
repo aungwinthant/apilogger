@@ -61,6 +61,14 @@ abstract class AbstractLogger{
             }
         }
 
+        $endTime = microtime(true);
+
+        $implode_models = $this->models;
+
+        array_walk($implode_models, function(&$value, $key) {
+            $value = "{$key} ({$value})";
+        });
+
         $models = implode(', ',$implode_models);
         $this->logs['created_at'] = Carbon::now();
         $this->logs['method'] = $request->method();
