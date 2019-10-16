@@ -18,7 +18,7 @@ composer require awt/apilogger @dev
 the ServiceProvider. If you use a lower version of Laravel you must register it in your 
 _app.php_ file:
 
-```bash
+```php
 AWT\Providers\ApiLogServiceProvider::class
 ```
 
