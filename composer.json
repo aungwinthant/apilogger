@@ -1,23 +1,23 @@
 {
     "autoload": {
         "psr-4": {
-            "AWT\\": "src/"
+            "TD\\": "src/"
         }
     },
-    "name": "awt/apilogger",
-    "description": "Small laravel package for viewing api logs which can be used in debugging.",
+    "name": "tutorialdrive/laravelapilogger",
+    "description": "Laravel package for logging and viewing API logs which can be used in debugging as well administrating the usage. Read more about logging @tutorialdrive",
     "type": "library",
     "license": "MIT",
     "authors": [
         {
-            "name": "aung win thant",
-            "email": "agwinthant@gmail.com"
+            "name": "Shivam Pandya",
+            "email": "shivampandya24@gmail.com"
         }
     ],
     "extra": {
         "laravel": {
             "providers": [
-                "AWT\\Providers\\ApiLogServiceProvider"
+                "TD\\Providers\\ApiLogServiceProvider"
             ]
         }
     },
