@@ -43,6 +43,10 @@ abstract class AbstractLogger{
     public function logData($request,$response){
         $currentRouteAction = Route::currentRouteAction();
 
+        // Initialiaze controller and action variable before use them
+        $controller = "";
+        $action = "";
+
         /*
          * Some routes will not contain the `@` symbole (e.g. closures, or routes using a single action controller).
          */
