@@ -76,7 +76,7 @@ abstract class AbstractLogger{
         $this->logs['created_at'] = Carbon::now();
         $this->logs['method'] = $request->method();
         $this->logs['url'] = $request->path();
-        $this->logs['payload'] = json_encode($request->all());
+        $this->logs['payload'] = $this->payload($request);
         $this->logs['response'] = $response->status();
         $this->logs['duration'] = number_format($endTime - LARAVEL_START, 3);
         $this->logs['controller'] = $controller;
@@ -105,5 +105,24 @@ abstract class AbstractLogger{
         $model->models = $data[8];
         $model->ip = $data[9];
         return $model;
+    }
+
+    /**
+     * Formats the request payload for logging
+     *
+     * @param $request
+     * @return string
+     */
+    protected function payload($request)
+    {
+        $allFields = $request->all();
+
+        foreach (config('apilog.dont_log', []) as $key) {
+            if (array_key_exists($key, $allFields)) {
+                unset($allFields[$key]);
+            }
+        }
+
+        return json_encode($allFields);
     }
 }

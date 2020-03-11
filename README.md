@@ -32,6 +32,8 @@ The config file is called *apilogs.php*. Currently supported drivers are *db* an
 
 By default the logger will use *file* to log the data. But if you want to use Database for logging, migrate table by using
 
+You can also configure which fields should not be logged like passwords, secrets, etc.
+
 ***You dont need to migrate if you are just using file driver***
 
 ```bash
