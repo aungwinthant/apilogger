@@ -9,6 +9,9 @@ return [
     |
     | This determines how the logs are stored.
     | Currently supported drivers are 'db' and 'file'
+    | If you want to use your own custom driver, you can parse through your
+    | Class name here: Eg: `\App\Apilogs\CustomLogger::class`
+    | Note: your log driver MUST implement ApiLoggerInterface!
     |
     */
 
