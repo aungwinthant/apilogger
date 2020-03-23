@@ -3,6 +3,7 @@
 namespace AWT\Providers;
 
 use AWT\Console\Commands\ClearApiLogger;
+use AWT\Http\Exceptions\InvalidApiLogDriverException;
 use AWT\Http\Middleware\ApiLogger;
 use AWT\Contracts\ApiLoggerInterface;
 use AWT\DBLogger;
@@ -16,6 +17,7 @@ class ApiLogServiceProvider extends ServiceProvider
      * Register services.
      *
      * @return void
+     * @throws \Exception
      */
     public function register()
     {
@@ -50,7 +52,16 @@ class ApiLogServiceProvider extends ServiceProvider
                 $instance = DBLogger::class;
                 break;
             default:
-                throw new Exception("Unsupported Driver");
+                try {
+                    $instance = $driver;
+                    if(!(resolve($instance) instanceof ApiLoggerInterface))
+                    {
+                        throw new InvalidApiLogDriverException();
+                    }
+                }
+                catch(\ReflectionException $exception){
+                    throw new InvalidApiLogDriverException();
+                }
                 break;
         }
         $this->app->singleton(ApiLoggerInterface::class,$instance);
@@ -59,11 +70,13 @@ class ApiLogServiceProvider extends ServiceProvider
             return new ApiLogger($app->make($instance));
         });
     }
+
     public function loadConfig(){
         $this->publishes([
             __DIR__.'/../../config/apilog.php' => config_path('apilog.php')
         ], 'config');
     }
+
     public function loadRoutes(){
         $this->loadRoutesFrom(__DIR__.'/../../routes/web.php');
     }

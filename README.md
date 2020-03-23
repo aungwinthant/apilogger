@@ -25,7 +25,7 @@ AWT\Providers\ApiLogServiceProvider::class
 2. Publish the config file with:
 
 ```bash
-php artisan vendor:publish --tag=config
+php artisan vendor:publish --tag=config --provider="AWT\Providers\ApiLogServiceProvider"
 ```
 
 The config file is called *apilogs.php*. Currently supported drivers are *db* and *file*
@@ -61,6 +61,7 @@ php artisan apilog:clear
 
 1. Your driver class ***must*** implement ApiLoggerInterface for saving, retrieving and deleting the logs.
 2. Your driver class may extends `AbstractLogger` class which provide helpful methods such as logData and mapArrayToModel.
+3. Substitude in your new class name instead of `db` or `file` as the driver. eg: `\App\Apilogs\CustomLogger::class`
 
 ## Security
 
