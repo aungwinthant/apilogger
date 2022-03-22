@@ -30,6 +30,18 @@ return [
 
     'filename' => env('API_LOGS_FILENAME_FORMAT', 'api-{Y-m-d}.log'),
 
+   /*
+   |--------------------------------------------------------------------------
+   | Routes group config
+   |--------------------------------------------------------------------------
+   |
+   | The default group settings for the routes.
+   |
+   */
+    'route'          => [
+        'prefix'     => 'apilogs',
+        'middleware' => null,
+    ],
 
     /*
     |--------------------------------------------------------------------------
