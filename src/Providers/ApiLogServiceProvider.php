@@ -92,6 +92,7 @@ class ApiLogServiceProvider extends ServiceProvider
     }
 
     public function loadMigrations(){
-        $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
+        if(config('apilog.driver') === 'db')
+            $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
     }
 }
