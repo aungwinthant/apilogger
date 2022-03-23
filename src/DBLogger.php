@@ -3,6 +3,10 @@
 namespace AWT;
 
 use AWT\Contracts\ApiLoggerInterface;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class DBLogger extends AbstractLogger implements ApiLoggerInterface{
 
@@ -11,7 +15,7 @@ class DBLogger extends AbstractLogger implements ApiLoggerInterface{
      *
      * @var [type]
      */
-    protected $logger; 
+    protected $logger;
 
     public function __construct(ApiLog $logger)
     {
@@ -28,10 +32,10 @@ class DBLogger extends AbstractLogger implements ApiLoggerInterface{
     /**
      * save logs in database
      */
-    public function saveLogs($request,$response)
+    public function saveLogs(Request $request, Response|JsonResponse|RedirectResponse $response)
     {
         $data = $this->logData($request,$response);
-        
+
         $this->logger->fill($data);
 
         $this->logger->save();

@@ -2,16 +2,21 @@
 
 namespace AWT\Contracts;
 
-interface ApiLoggerInterface{
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
+interface ApiLoggerInterface{
     /**
      * saving methods in favourite driver
      *
-     * @param [type] $request
-     * @param [type] $response
+     * @param Request   $request
+     * @param Response $response
+     *
      * @return void
      */
-    public function saveLogs($request,$response);
+    public function saveLogs(Request $request, Response|JsonResponse|RedirectResponse $response);
     /**
      * return logs to use in the frontend
      *
