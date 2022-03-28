@@ -43,7 +43,7 @@ class FileLogger extends AbstractLogger implements ApiLoggerInterface
                     $contentCollection->add((object) unserialize(file_get_contents($file)));
                 }
             }
-            return collect($contentCollection);
+            return collect($contentCollection)->sortByDesc('created_at');
         } else {
             return [];
         }

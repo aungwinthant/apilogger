@@ -27,7 +27,7 @@ class DBLogger extends AbstractLogger implements ApiLoggerInterface{
      */
     public function getLogs()
     {
-        return $this->logger->all();
+        return $this->logger->orderByDesc('created_at')->paginate(config('apiloger.per_page', 25));
     }
     /**
      * save logs in database

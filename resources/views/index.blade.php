@@ -77,7 +77,7 @@ function hex_dump($data, $newline = "\n") {
                             <button class="btn btn-{{$log->method=="GET"? "primary" : "success"}} font-weight-bold">{{$log->method}}</button>
                         @endif
 
-                        <small class="col-md-2">
+                        <small class="col-md-2" style="word-break: break-all;">
                             <b>{{$log->status_code}} - {{url($log->url)}}</b>
                         </small>
                     </span>
@@ -166,6 +166,11 @@ function hex_dump($data, $newline = "\n") {
           @endforelse
 
         </div>
+        @if(config('apilog.driver') === 'db')
+            <div class="d-flex justify-content-center">
+                {!! $apilogs->links() !!}
+            </div>
+        @endif
     </main>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
