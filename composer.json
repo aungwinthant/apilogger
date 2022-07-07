@@ -1,4 +1,9 @@
 {
+    "require": {
+        "php": "^8.0|^8.1",
+        "ext-libxml": "*",
+        "ext-json": "*"
+    },
     "autoload": {
         "psr-4": {
             "AWT\\": "src/"

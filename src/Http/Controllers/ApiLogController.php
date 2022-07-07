@@ -28,22 +28,16 @@ class ApiLogController extends Controller
     public function index(ApiLoggerInterface $logger)
     {
         $apilogs = $logger->getLogs();
-        
-        if(count($apilogs)>0){
-            $apilogs = $apilogs->sortByDesc('created_at');
-        }
-        else{
-            $apilogs = [];
-        }
+
         return view('apilog::index',compact('apilogs'));
-        
+
     }
     public function delete(ApiLoggerInterface $logger)
     {
         $logger->deleteLogs();
 
         return redirect()->back();
-        
+
     }
-    
+
 }

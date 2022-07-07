@@ -64,6 +64,15 @@ php artisan apilog:clear
 3. Substitude in your new class name instead of `db` or `file` as the driver. eg: `\App\Apilogs\CustomLogger::class`
 
 ## Security
+### Add Auth
+In config/apilog.php you have 'route' option, you can change the prefix and add auth middleware or any other middleware
+```php
+'route'          => [
+    'prefix'     => 'apilogs',
+    'middleware' => null,//Can be change to ['auth'] or others
+]
+```
+
 
 If you discover any security related issues, please email agwinthant@gmail.com instead of using the issue tracker.
 

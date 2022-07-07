@@ -11,7 +11,9 @@
 |
 */
 
-
-Route::get('/apilogs', 'AWT\Http\Controllers\ApiLogController@index')->name("apilogs.index");
-
-Route::delete('/apilogs/delete', 'AWT\Http\Controllers\ApiLogController@delete')->name("apilogs.deletelogs");
+$config = array_merge(config('apilog.route'), ['namespace' => 'AWT\\Http\\Controllers']);
+Route::group($config, function($router)
+{
+    Route::get('/', 'ApiLogController@index')->name("apilogs.index");
+    Route::delete('/delete', 'ApiLogController@delete')->name("apilogs.deletelogs");
+});
